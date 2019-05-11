@@ -1,25 +1,17 @@
 package euler
 
-import kotlin
-
-class problem_0001 {
-
-    val limit = 10
-    val multiplesOf = arrayListOf(3, 5)
-
-    var multipleList = emptyList<Int>()
+class MultipleOf(val limit: Int, val arguments: List<Int>) {
 
     fun isMod(arg1: Int, arg2: Int): Boolean {
         // is arg1 a multiple of arg2?
 
         if (arg1.rem(arg2) == 0) {
             return true
-        } else {
-            return false
         }
+        return false
     }
 
-    fun multipleOf(arguments: List<Int>, limit: Int): Map<Int, List<Int>> {
+    fun getMultiplesOf(limit: Int, arguments: List<Int>): Map<Int, List<Int>> {
         // return list of multiples for arguments < limit int
 
         var i = 0
@@ -36,16 +28,21 @@ class problem_0001 {
 
         return (multipleList)
     }
+}
 
-    fun main(args: Array<String>) {
+
+fun main(args: Array<String>) {
 /*
     If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
     Find the sum of all the multiples of 3 or 5 below 1000.
  */
+    print(args.size)
 
-        var output = multipleOf(multiplesOf, limit)
-        output.forEach {
-            print(it.toString())
-        }
+    val limit = 10
+    val input = arrayListOf(3, 5)
+    val output = MultipleOf(limit, input).getMultiplesOf(limit, input)
+
+    output.forEach {
+        print(it.toString())
     }
 }
