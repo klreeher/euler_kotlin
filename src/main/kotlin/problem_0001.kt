@@ -2,47 +2,47 @@ package euler
 
 class MultipleOf(val limit: Int, val arguments: List<Int>) {
 
-    fun isMod(arg1: Int, arg2: Int): Boolean {
+    fun isMod(arg1: Int, arg2: Int): Map<Int, Int> {
         // is arg1 a multiple of arg2?
 
         if (arg1.rem(arg2) == 0) {
-            return true
+            print("\n$arg1 is a multiple of $arg2!")
+            val modOf: Map<Int, Int> = mapOf(Pair(arg2, arg1))
+            return modOf
         }
-        return false
+        return emptyMap<Int, Int>()
     }
 
-    fun getMultiplesOf(limit: Int, arguments: List<Int>): Map<Int, List<Int>> {
+    //TODO: this shouldn't use ridiculously nested maps -- declare some classes
+    fun getMultiplesOf(limit: Int, arguments: List<Int>): Int {
         // return list of multiples for arguments < limit int
 
-        var i = 0
-        var multipleList: Map<Int, List<Int>> = mapOf()
+        var i = 1
+        var sum: Int = 0
 
         while (i < limit) {
             arguments.forEach {
-                if (isMod(i, it)) {
-                    multipleList.plus(Pair(it, i))
+                var members: List<Int> = emptyList()
+                val result = isMod(i, it)
+                if (result.isNotEmpty()) {
+                    sum += i
                 }
+
             }
             i++
         }
-
-        return (multipleList)
+        return sum
     }
 }
 
-
 fun main(args: Array<String>) {
-/*
-    If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
-    Find the sum of all the multiples of 3 or 5 below 1000.
- */
-    print(args.size)
-
-    val limit = 10
+    /*
+        If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+        Find the sum of all the multiples of 3 or 5 below 1000.
+     */
+    val limit = 1000
     val input = arrayListOf(3, 5)
     val output = MultipleOf(limit, input).getMultiplesOf(limit, input)
 
-    output.forEach {
-        print(it.toString())
-    }
+    print("\nTOTAL SUM OF MULTIPLES OF $input UNDER $limit: $output")
 }
