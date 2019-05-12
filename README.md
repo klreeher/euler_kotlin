@@ -6,6 +6,9 @@
 
 ## project structure
 
+kotlinc src/main/kotlin/problem_0001.kt  -include-runtime -d problem0001.jar
+
+
 ## build process
 
 - uses sonarqube
